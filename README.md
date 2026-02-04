@@ -1,6 +1,6 @@
-# TODO
+# Contact List
 
-Please do not fork the repo, clone it and put it in your own github / save it locally.
+Please do not fork the repo, clone it and put it in your own GitHub / save it locally.
 
 Definition of done:
 
@@ -14,7 +14,7 @@ Definition of done:
 8. Selected contacts are displayed at the top of the list.
 9. List performance is optimized when selecting/deselecting/scrolling cards.
 
-Doing this task in typescript is preferred. However, if you do not feel comfortable with typescript, please change file extension to js.
+Doing this task in TypeScript is preferred. However, if you do not feel comfortable with TypeScript, please change file extension to js.
 
 We appreciate code that is written manually, so avoid including extra dependencies unless they are essential.
 Design choices are yours, but please stick to provided layout pattern. Please have UX in mind when making decisions.
@@ -25,49 +25,41 @@ Optional: Add functional / unit tests with testing library of your choice.
 
 Good luck and do not hesitate to ask in case of any questions!
 
----
+## Tech Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- React 19
+- TypeScript 5
+- Vite 7
+- Vitest + Testing Library
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn dev` (or `yarn start`)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Starts the Vite dev server.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production into the `dist/` folder.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `yarn preview`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Serves the built app locally from `dist/`.
 
-### `yarn eject`
+### `yarn ts`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Runs a TypeScript type-check (`tsc --noEmit`).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `yarn test`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Runs tests once in CI mode.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `yarn test:watch`
 
-## Learn More
+Runs tests in watch mode.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `yarn test:coverage`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Runs tests with coverage reporting.

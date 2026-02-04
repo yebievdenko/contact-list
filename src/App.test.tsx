@@ -1,16 +1,17 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 import App from "./App";
 import type { Contact } from "./types/contact";
 import { apiData } from "./api";
 
-jest.mock("./api", () => ({
+vi.mock("./api", () => ({
   BATCH_SIZE: 10,
-  apiData: jest.fn(),
+  apiData: vi.fn(),
 }));
 
 // Keep tests focused on app behavior, not react-window internals.
-jest.mock("react-window", () => ({
+vi.mock("react-window", () => ({
   List: ({ className, rowComponent: Row, rowCount, rowProps }: any) => (
     <div className={className}>
       {Array.from({ length: rowCount }).map((_, index) => (
@@ -30,7 +31,7 @@ jest.mock("react-window", () => ({
   ),
 }));
 
-const mockedApiData = apiData as jest.MockedFunction<typeof apiData>;
+const mockedApiData = vi.mocked(apiData);
 
 function makeContacts(start: number, count: number): Contact[] {
   return Array.from({ length: count }, (_, offset) => {
