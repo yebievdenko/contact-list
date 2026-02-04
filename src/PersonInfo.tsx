@@ -1,35 +1,53 @@
 import React from "react";
+import type { Contact } from "./types/contact";
+import "./PersonInfo.css";
 
-type Props = {
-  data: {
-    firstNameLastName: string;
-    jobTitle: string;
-    emailAddress: string;
-  };
+type PersonInfoProps = {
+  contact: Contact;
+  onToggleSelect: (id: string) => void;
+  isSelected: boolean;
 };
 
-function PersonInfo(props: Props) {
-  const { data } = props;
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
+
+const PersonInfo = React.memo(function PersonInfo({
+  contact,
+  isSelected,
+  onToggleSelect,
+}: PersonInfoProps) {
+  const { emailAddress, firstNameLastName, id, jobTitle } = contact;
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onToggleSelect(id);
+    }
+  };
+
   return (
     <div
-      style={{
-        display: "flex",
-        height: "100px",
-        justifyContent: "center",
-        flexDirection: "column",
-        padding: "32px",
-        boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.15)",
-        margin: "10px 0",
-        background: "#fff",
-        cursor: "pointer",
-      }}
-      className="person-info"
+      className={`person-info ${isSelected ? "selected" : ""}`}
+      onClick={() => onToggleSelect(id)}
+      onKeyDown={onKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isSelected}
     >
-      <div className="firstNameLastName">{data.firstNameLastName}</div>
-      <div className="jobTitle">{data.jobTitle}</div>
-      <div className="emailAddress">{data.emailAddress}</div>
+      <div className="person-avatar">{getInitials(firstNameLastName)}</div>
+      <div className="person-details">
+        <div className="person-name">{firstNameLastName}</div>
+        <div className="person-job">{jobTitle}</div>
+        <div className="person-email">{emailAddress}</div>
+      </div>
     </div>
   );
-}
+});
 
 export default PersonInfo;
